@@ -4,6 +4,7 @@ namespace apps\httpd\controllers;
 
 use mix\http\Controller;
 use apps\httpd\libraries\doubleArrayTrie;
+use apps\httpd\libraries\addWords;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,17 +38,18 @@ class IndexController extends Controller
     public function actionAdd()
 	{
 		$content = app()->request->get('content') ?? '草';
+        //return ['code' => 0, 'message' => 'OK', 'data' => $data];
 
         //敏感词数组 可以录读第五部分的词库 然后生成敏感词文件
-        $words = [$content];
+        $words = addWords::getWords();
         //创建一个空的trie tree
         $tire = \trie_filter_new();
         //向trie tree中添加敏感词
-        foreach ($words as $k => $v) {
+        foreach ( $words ?: [] as $k => $v) {
             trie_filter_store($tire, $v);
         }
         //生成敏感词文件
-        trie_filter_save($tire, app()->getPublicPath() . 'dict.tree');
+        trie_filter_save($tire, app()->getPublicPath() . '/dict.tree');
 
         return json_encode(['code' => 0, 'message' => 'OK']);
 	}
@@ -59,18 +61,18 @@ class IndexController extends Controller
      */
 	public function actionGet() 
 	{
-		$content = app()->request->get('content') ?? '傻逼草拟吗 哈哈哈';
+		$content = app()->request->get('content') ?? '邓朴方草拟吗 哈哈哈 达赖';
 		//\trie_filter_new();
 
 		//准备要过滤的文本
 		//$content = '傻逼草拟吗 哈哈哈';
 
-		$result = [];
+		$result  = $str = '';
 
-	    if (!empty($content)) {
+	    if ( $content ) {
 
 	        // 字典树文件路径，默认当时目录下
-	        $tree_file = app()->getPublicPath() . 'dict.tree';
+	        $tree_file = app()->getPublicPath() . '/dict.tree';
 
 	        // 清除文件状态缓存
 	        clearstatcache();

@@ -11,7 +11,8 @@
 
 namespace apps\httpd\libraries;
 
-class doubleArrayTrie {
+class doubleArrayTrie 
+{
 
 	// trie-tree对象
     private static $_resTrie = null;
