@@ -1,0 +1,66 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "228981350d73f26acbde5450d1cfefe7",
+    "packages": [
+        {
+            "name": "mixstart/mixphp-framework",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mixstart/mixphp-framework.git",
+                "reference": "f70cc83997908128ab869719a036b0c6807886af"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mixstart/mixphp-framework/zipball/f70cc83997908128ab869719a036b0c6807886af",
+                "reference": "f70cc83997908128ab869719a036b0c6807886af",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0"
+            },
+            "type": "framework",
+            "autoload": {
+                "psr-4": {
+                    "mix\\": "src/"
+                },
+                "files": [
+                    "src/Mix.php",
+                    "src/helpers/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Jian Liu",
+                    "email": "coder.liu@qq.com"
+                }
+            ],
+            "description": "MixPHP 框架核心 http://www.mixphp.cn",
+            "homepage": "http://www.mixphp.cn/",
+            "keywords": [
+                "framework",
+                "mixphp",
+                "swoole"
+            ],
+            "time": "2018-10-09T11:14:56+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=7.0.0"
+    },
+    "platform-dev": []
+}

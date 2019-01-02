@@ -1,0 +1,27 @@
+{
+  "name": "mixstart/mixphp",
+  "description": "基于 Swoole 的FPM、常驻内存、协程三模 PHP 高性能框架 http://www.mixphp.cn",
+  "type": "project",
+  "keywords": [
+    "framework",
+    "mixphp",
+    "swoole"
+  ],
+  "homepage": "http://www.mixphp.cn/",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "Jian Liu",
+      "email": "coder.liu@qq.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0.0",
+    "mixstart/mixphp-framework": "1.1.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "apps\\": "apps/"
+    }
+  }
+}
