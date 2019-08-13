@@ -27,7 +27,8 @@ class doubleArrayTrie
      * @param $new_mtime 当前调用时字典树的更新时间
      * @return null
      */
-    static public function getResTrie($tree_file, $new_mtime) {
+    static public function getResTrie( $tree_file, $new_mtime ) 
+    {
 
         if (is_null(self::$_mtime)) {
             self::$_mtime = $new_mtime;
@@ -51,9 +52,9 @@ class doubleArrayTrie
      * @param $res 1-3 表示 从位置1开始，3个字符长度
      * @return array
      */
-    static public function getFilterWords($str, $res)
+    static public function getFilterWords( $str, $res ): array
     {
-        $result = array();
+        $result = [];
         foreach ($res as $k => $v) {
             $word = substr($str, $v[0], $v[1]);
 
@@ -61,7 +62,6 @@ class doubleArrayTrie
                 $result[] = $word;
             }
         }
-
         return $result;
     }
 }
