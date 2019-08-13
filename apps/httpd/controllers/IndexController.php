@@ -63,42 +63,30 @@ class IndexController extends Controller
 	{
 		$content = app()->request->get('content') ?? '邓朴方草拟吗 哈哈哈 达赖';
 		//\trie_filter_new();
-
-		//准备要过滤的文本
-		//$content = '傻逼草拟吗 哈哈哈';
-
 		$result  = $str = '';
 
-	    if ( $content ) {
+        // 字典树文件路径，默认当时目录下
+        $tree_file = app()->getPublicPath() . '/dict.tree';
 
-	        // 字典树文件路径，默认当时目录下
-	        $tree_file = app()->getPublicPath() . '/dict.tree';
+        // 清除文件状态缓存
+        //clearstatcache();
 
-	        // 清除文件状态缓存
-	        clearstatcache();
+        // 获取请求时，字典树文件的修改时间
+        $new_mtime = filemtime($tree_file);
 
-	        // 获取请求时，字典树文件的修改时间
-	        $new_mtime = filemtime($tree_file);
+        // 获取最新trie-tree对象
+        $resTrie = doubleArrayTrie::getResTrie($tree_file, $new_mtime);
 
-	        // 获取最新trie-tree对象
-	        $resTrie = doubleArrayTrie::getResTrie($tree_file, $new_mtime);
+        // 执行过滤
+        $arrRet = trie_filter_search_all($resTrie, $content);
 
-	        // 执行过滤
-	        $arrRet = trie_filter_search_all($resTrie, $content);
+        // 提取过滤出的敏感词
+        $result = doubleArrayTrie::getFilterWords($content, $arrRet);
 
-	        // 提取过滤出的敏感词
-	        $result = doubleArrayTrie::getFilterWords($content, $arrRet);
-
-
-	        $badword = array_combine($result,array_fill(0,count($result),'***'));  
-
-			$str = strtr($content, $badword);  
-
-	    }
+		$str = strtr($content, array_combine($result,array_fill(0,count($result),'***')));  
 
 		//释放trie资源
 		//trie_filter_free($tire);
-
 		return ['code' => 0, 'message' => 'OK', 'data' => $str];
 	}
 

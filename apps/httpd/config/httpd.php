@@ -73,7 +73,7 @@ return [
                 // 主机
                 'host'       => '127.0.0.1',
                 // 端口
-                'port'       => 9501,
+                'port'       => 9999,
                 // 配置文件
                 'configFile' => __DIR__ . '/http_permanent.php',
             ],

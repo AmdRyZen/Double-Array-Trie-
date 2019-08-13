@@ -1,23 +1,23 @@
 // 查看帮助
-mix-httpd -h
+php mix-httpd -h
 
 // 启动
-mix-httpd service start
+php mix-httpd service start
 
 // 启动（守护）
-mix-httpd service start -d
+php mix-httpd service start -d
 
 // 启动（守护 + 热更新）
-mix-httpd service start -d -u
+php mix-httpd service start -d -u
 
 // 停止
-mix-httpd service stop
+php mix-httpd service stop
 
 // 重启
-mix-httpd service restart
+php mix-httpd service restart
 
 // 重启工作进程
-mix-httpd service reload
+php mix-httpd service reload
 
 // 状态
-mix-httpd service status
+php mix-httpd service status

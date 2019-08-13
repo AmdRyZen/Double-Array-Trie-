@@ -1,0 +1,50 @@
+[
+    {
+        "name": "mixstart/mixphp-framework",
+        "version": "v1.1.1",
+        "version_normalized": "1.1.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/mixstart/mixphp-framework.git",
+            "reference": "f70cc83997908128ab869719a036b0c6807886af"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/mixstart/mixphp-framework/zipball/f70cc83997908128ab869719a036b0c6807886af",
+            "reference": "f70cc83997908128ab869719a036b0c6807886af",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=7.0.0"
+        },
+        "time": "2018-10-09T11:14:56+00:00",
+        "type": "framework",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "mix\\": "src/"
+            },
+            "files": [
+                "src/Mix.php",
+                "src/helpers/functions.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Apache-2.0"
+        ],
+        "authors": [
+            {
+                "name": "Jian Liu",
+                "email": "coder.liu@qq.com"
+            }
+        ],
+        "description": "MixPHP 框架核心 http://www.mixphp.cn",
+        "homepage": "http://www.mixphp.cn/",
+        "keywords": [
+            "framework",
+            "mixphp",
+            "swoole"
+        ]
+    }
+]
