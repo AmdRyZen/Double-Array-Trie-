@@ -1,4 +1,14 @@
 <?php
+/*
+|--------------------------------------------------------------------------
+| 敏感词过滤
+|--------------------------------------------------------------------------
+|
+| This value is the name of your application. This value is used when the
+| framework needs to place the application's name in a notification or
+| any other location as required by the application or its packages.
+|
+*/
 
 namespace apps\httpd\controllers;
 
@@ -6,15 +16,6 @@ use mix\http\Controller;
 use apps\httpd\libraries\doubleArrayTrie;
 use apps\httpd\libraries\addWords;
 
-/*
-|--------------------------------------------------------------------------
-| 敏感词过滤
-|--------------------------------------------------------------------------
-|
-| snippet
-|
-|
-*/
 class IndexController extends Controller
 {
     // 默认动作
@@ -31,14 +32,14 @@ class IndexController extends Controller
     }
     
     /**
-     * 添加  可以从MySQL || TXT文档 读敏感词库
-     *
-     * @var mixed
-     */
+    * 添加  可以从MySQL || TXT文档 读敏感词库
+    *
+    * @param 
+    * @return mixd
+    */
     public function actionAdd()
 	{
 		$content = app()->request->get('content') ?? '草';
-        //return ['code' => 0, 'message' => 'OK', 'data' => $data];
 
         //敏感词数组 可以录读第五部分的词库 然后生成敏感词文件
         $words = addWords::getWords();
@@ -55,10 +56,11 @@ class IndexController extends Controller
 	}
 
     /**
-     * 获取替换之后的敏感词
-     *
-     * @var mixed
-     */
+    * 获取替换之后的敏感词
+    *
+    * @param 
+    * @return mixd
+    */
 	public function actionGet() 
 	{
 		$content = app()->request->get('content') ?? '邓朴方草拟吗 哈哈哈 达赖';
@@ -87,7 +89,7 @@ class IndexController extends Controller
 
 		//释放trie资源
 		//trie_filter_free($tire);
-		return ['code' => 0, 'message' => 'OK', 'data' => $str];
+		return json_encode([ 'code' => 0, 'message' => 'OK', 'data' => $str ]);
 	}
 
 }

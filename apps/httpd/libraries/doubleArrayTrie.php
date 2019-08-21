@@ -4,8 +4,9 @@
 | 敏感词过滤  基于Double-Array Trie 
 |--------------------------------------------------------------------------
 |
-| snippet
-|
+| This value is the name of your application. This value is used when the
+| framework needs to place the application's name in a notification or
+| any other location as required by the application or its packages.
 |
 */
 
@@ -27,9 +28,8 @@ class doubleArrayTrie
      * @param $new_mtime 当前调用时字典树的更新时间
      * @return null
      */
-    static public function getResTrie( $tree_file, $new_mtime ) 
+    static public function getResTrie( $tree_file, $new_mtime )
     {
-
         if (is_null(self::$_mtime)) {
             self::$_mtime = $new_mtime;
         }
