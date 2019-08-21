@@ -1,0 +1,10 @@
+
+*.patch
+.idea/
+.git/
+runtime/
+vendor/
+*.lock
+.env
+.phpstorm.meta.php
+.DS_Store
