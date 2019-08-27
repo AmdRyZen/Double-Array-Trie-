@@ -53,21 +53,33 @@ class EsController extends Controller
     public function actionGet()
     {
      try {
-        $kwords = app()->request->get('kwords') ?? '123';
+          $kwords = app()->request->get('kwords') ?? '123';
+          $size = app()->request->get('size') ?? 10;
+          $page = app()->request->get('page') ?? 1;
+          $scroll_id = app()->request->get('scroll_id') ?? '';
 
-        $client = ClientBuilder::create()->build();
-         //搜索
-        $serparams = [ 
-          'index' => 'article_index',
-          'type' => 'article_type',
-        ];      
-
-        $serparams['body']['query']['match']['match_name'] = $kwords;
-        $resech = $client->search($serparams);
-
-        return ['code' => 0, 'message' => 'OK', 'data' => $resech['hits']['hits']];
+          $client = ClientBuilder::create()->build();
+           //搜索
+          $serparams = [ 
+            'index' => 'article_index',
+            'type' => 'article_type',
+            "scroll" => "1m",
+            "size" => $size,
+          ];      
+          $serparams['body']['query']['match']['match_name'] = $kwords;
+          if( empty( $scroll_id ) ) {
+            $resech = $client->search($serparams);
+            $scroll_id = $resech['_scroll_id'];
+          } else {
+            $resech = $client->scroll( ["scroll_id" => $scroll_id, 'scroll' => '1m'] );
+            if ( !($resech['hits']['hits'] && count($resech['hits']['hits']) > 0 ) ) {
+               $resech = [];
+            }
+          }
+          return ['code' => 0, 'message' => 'OK', 'data' => $resech];
        } catch (\Throwable $e) {
-          return ['code' => -1, 'message' => $e->getMessage()];
+          return ['code' => 0, 'message' => 'OK', 'data' => []];
+          //return ['code' => -1, 'message' => $e->getMessage()];
        }
     }
 }
