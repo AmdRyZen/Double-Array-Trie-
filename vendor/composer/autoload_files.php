@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'ad155f8f1cf0d418fe49e248db8c661b' => $vendorDir . '/react/promise/src/functions_include.php',
     '00c56d9722d53c322a9116c59e0e7f53' => $vendorDir . '/mixstart/mixphp-framework/src/Mix.php',
     'f78395f88d60b0f4c141393c4b51e872' => $vendorDir . '/mixstart/mixphp-framework/src/helpers/functions.php',
 );

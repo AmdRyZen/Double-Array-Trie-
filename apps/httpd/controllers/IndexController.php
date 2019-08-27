@@ -38,9 +38,7 @@ class IndexController extends Controller
 
         $ret = $table->get('iphoneX');
 
-    	return json_encode(['code' => 0, 'message' => 'OK', 'data' => $ret]);
-    	//print_r(app()->getPublicPath());
-    	//return 'test';
+    	return ['code' => 0, 'message' => 'OK', 'data' => $ret];
     }
     
     /**
@@ -49,9 +47,9 @@ class IndexController extends Controller
     * @param 
     * @return mixd
     */
-    public function actionAdd()
+    public function actionInit()
 	{
-      try {
+        try {
             //敏感词数组 可以录读第五部分的词库 然后生成敏感词文件
             $words = addWords::getWords();
             //创建一个空的trie tree
@@ -63,10 +61,10 @@ class IndexController extends Controller
             //生成敏感词文件
             trie_filter_save($tire, app()->getPublicPath() . '/dict.tree');
 
-            return \json_encode(['code' => 0, 'message' => 'OK']);
-      } catch (Throwable $e) {
-        return \json_encode([ 'code' => -1, 'message' => 'Error' ]);
-      }
+            return ['code' => 0, 'message' => 'OK'];
+        } catch (Throwable $e) {
+            return [ 'code' => -1, 'message' => 'Error' ];
+        }
 	}
 
     /**
@@ -104,9 +102,9 @@ class IndexController extends Controller
 
             //释放trie资源
             //trie_filter_free($tire);
-            return \json_encode([ 'code' => 0, 'message' => 'OK', 'data' => $str ]);
+            return [ 'code' => 0, 'message' => 'OK', 'data' => $str ];
         } catch (\Throwable $e) {
-            return \json_encode([ 'code' => -1, 'message' => 'Error' ]);
+            return [ 'code' => -1, 'message' => 'Error' ];
         }
 	}
 

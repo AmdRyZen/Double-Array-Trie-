@@ -14,12 +14,10 @@ namespace apps\httpd\libraries;
 
 class doubleArrayTrie 
 {
-
 	// trie-tree对象
     private static $_resTrie = null;
     // 字典树的更新时间
     private static $_mtime = null;
-
 
  	/**
      * 提供trie-tree对象
