@@ -25,12 +25,12 @@ class EsController extends Controller
 
     public function actionAdd()
     {
-       try {
-        $list = \Mix::app()->pdo->createCommand("SELECT * FROM `t_match`")->queryAll();
+      try {
+          $list = \Mix::app()->pdo->createCommand("SELECT * FROM `t_match`")->queryAll();
 
-        $client = ClientBuilder::create()->build();
+          $client = ClientBuilder::create()->build();
 
-        foreach ($list as $k => $v) {
+          foreach ($list as $k => $v) {
           $params = [
             'index' => 'article_index',
             'type' => 'article_type',
@@ -43,13 +43,11 @@ class EsController extends Controller
             ],
           ];
           $response = $client->index($params);
-        }
-
-        return ['code' => 0, 'message' => 'OK', 'data' => $response];
-       } catch (\Throwable $e) {
+          }
+          return ['code' => 0, 'message' => 'OK', 'data' => $response];
+          } catch (\Throwable $e) {
           return ['code' => -1, 'message' => $e->getMessage()];
-       }
-
+      }
     }
 
     public function actionGet()
