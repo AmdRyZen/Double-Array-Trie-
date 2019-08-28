@@ -31,18 +31,18 @@ class EsController extends Controller
           $client = ClientBuilder::create()->build();
 
           foreach ($list as $k => $v) {
-          $params = [
-            'index' => 'article_index',
-            'type' => 'article_type',
-            'id' => 'article_' . $v['match_id'],
-            'body' => [
-              'id' => $v['match_id'],
-              'match_name' => $v['match_name'],
-              'home_team' => $v['home_team'],
-              'away_team' => $v['away_team'],
-            ],
-          ];
-          $response = $client->index($params);
+            $params = [
+              'index' => 'match_index',
+              'type' => 'match_type',
+              'id' => 'match_' . $v['match_id'],
+              'body' => [
+                'id' => $v['match_id'],
+                'match_name' => $v['match_name'],
+                'home_team' => $v['home_team'],
+                'away_team' => $v['away_team'],
+              ],
+            ];
+            $response = $client->index($params);
           }
           return ['code' => 0, 'message' => 'OK', 'data' => $response];
           } catch (\Throwable $e) {
@@ -61,8 +61,8 @@ class EsController extends Controller
           $client = ClientBuilder::create()->build();
            //搜索
           $serparams = [ 
-            'index' => 'article_index',
-            'type' => 'article_type',
+            'index' => 'match_index',
+            'type' => 'match_type',
             "scroll" => "1m",
             "size" => $size,
           ];      
