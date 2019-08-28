@@ -63,23 +63,39 @@ class EsController extends Controller
           $serparams = [ 
             'index' => 'match_index',
             'type' => 'match_type',
-            "scroll" => "1m",
-            "size" => $size,
-          ];      
-          $serparams['body']['query']['match']['match_name'] = $kwords;
+            'scroll' => "1m",
+            'size' => $size,
+            'body' => [
+              'query' => [
+              'bool' => [
+                'filter' => [
+                  'bool' => [
+                    'must' => [
+                      'bool' => [
+                        'should' => [
+                          ['wildcard' => ['match_name' => $kwords]],
+                          ['wildcard' => ['home_team' => $kwords]],
+                          ],
+                        ],
+                      ],
+                    ],
+                  ],
+                ],
+              ],
+            ],
+          ];  
+
+          //$serparams['body']['query']['match']['match_name'] = $kwords;
           if( empty( $scroll_id ) ) {
             $resech = $client->search($serparams);
-            $scroll_id = $resech['_scroll_id'];
           } else {
             $resech = $client->scroll( ["scroll_id" => $scroll_id, 'scroll' => '1m'] );
-            if ( !($resech['hits']['hits'] && count($resech['hits']['hits']) > 0 ) ) {
-               $resech = [];
-            }
           }
+
           return ['code' => 0, 'message' => 'OK', 'data' => $resech];
        } catch (\Throwable $e) {
-          return ['code' => 0, 'message' => 'OK', 'data' => []];
-          //return ['code' => -1, 'message' => $e->getMessage()];
+          //return ['code' => 0, 'message' => 'OK', 'data' => []];
+          return ['code' => -1, 'message' => $e->getMessage()];
        }
     }
 }
