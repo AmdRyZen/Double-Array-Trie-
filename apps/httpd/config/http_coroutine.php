@@ -223,6 +223,35 @@ return [
             'max'   => 50,
         ],
 
+
+        // 数据库
+        'pdo2'                    => [
+            // 类路径
+            'class'          => 'mix\client\PDOCoroutine',
+            // 数据源格式
+            'dsn'            => env('DB.DSN'),
+            // 数据库用户名
+            'username'       => env('DB.USERNAME'),
+            // 数据库密码
+            'password'       => env('DB.PASSWORD'),
+            // 连接池
+            'connectionPool' => [
+                // 组件路径
+                'component' => 'pdo2.connectionPool',
+            ],
+        ],
+
+        // 连接池
+        'pdo2.connectionPool'     => [
+            // 类路径
+            'class' => 'mix\pool\ConnectionPool',
+            // 最小连接数
+            'min'   => 5,
+            // 最大连接数
+            'max'   => 50,
+        ],
+
+
         // redis
         'redis'                  => [
             // 类路径

@@ -27,7 +27,7 @@ class EsController extends Controller
     {
       try {
           $list = \Mix::app()->pdo->createCommand("SELECT * FROM `t_match`")->queryAll();
-
+          
           $client = ClientBuilder::create()->build();
 
           foreach ($list as $k => $v) {
